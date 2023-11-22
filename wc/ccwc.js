@@ -33,6 +33,15 @@ function getNumberOfWords(fileName) {
     return wordCount;
 }
 
+function getNumberOfChars(fileName) {
+    let charCount = 0;
+    let data = fs.readFileSync(fileName, 'utf-8');
+    for (const ch of data) {
+        charCount++;
+    }
+    return charCount;
+}
+
 switch (commandList[0]) {
     case "-c":
         console.log("\t" + getBytes(fileName) + " " + fileName);
@@ -43,6 +52,10 @@ switch (commandList[0]) {
     case "-w":
         console.log("\t" + getNumberOfWords(fileName) + " " + fileName);       
         break;
+    case "-m":
+        console.log("\t" + getNumberOfChars(fileName) + " " + fileName);       
+        break;
     default:
+        console.log("\t" + getNumberOfLines(fileName) + "\t"+ getNumberOfChars(fileName) + " " + fileName);
         break;
 }
